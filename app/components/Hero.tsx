@@ -1,38 +1,25 @@
 import Image from "next/image";
+import Icon from "./Icon";
 
 export default function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-copy">
-        <p className="eyebrow"><span className="status-dot" /> Available for Summer 2027</p>
-        <p className="case-id">CASE FILE / KZ-001</p>
-        <h1 id="hero-title">Khant<br />Zayar.</h1>
-        <p className="hero-role">Blue Team / SOC Analyst Path</p>
-        <p className="hero-summary">
-          Computer Science student investigating threats, building secure systems,
-          and documenting every step of the journey.
-        </p>
-        <div className="hero-actions">
-          <a className="button button-primary" href="#projects">Open case files <span>↓</span></a>
-          <a className="button button-quiet" href="mailto:khant.zayar.dev@gmail.com?subject=Résumé%20request">Request résumé ↗</a>
-        </div>
+    <section className="hero panel" id="about" aria-labelledby="hero-title">
+      <div className="profile-card">
+        <div className="profile-image"><Image src="/profile-themed.png" alt="Khant Zayar by the sea at dusk" fill priority sizes="(max-width: 600px) 88vw, (max-width: 900px) 230px, 320px" /></div>
+        <div className="profile-caption"><p className="profile-name">Khant Zayar</p><p>Computer Science student</p><p>Rangsit University · Bangkok, Thailand</p></div>
       </div>
-
-      <figure className="portrait-card">
-        <div className="portrait-corner portrait-corner-top" aria-hidden="true" />
-        <Image
-          src="/profile-themed.png"
-          alt="Khant Zayar standing by the sea at blue hour"
-          fill
-          priority
-          sizes="(max-width: 800px) 88vw, 42vw"
-        />
-        <div className="portrait-scan" aria-hidden="true" />
-        <figcaption>
-          <span>SUBJECT / KZ</span>
-          <span>BANGKOK, TH</span>
-        </figcaption>
-      </figure>
+      <div className="hero-content">
+        <div className="hero-overline"><span className="eyebrow">Student / Cybersecurity / Blue Team</span><span className="hero-edition">Learning with purpose</span></div>
+        <h1 id="hero-title">Building toward a career<br className="hero-break" /> in <span>cyber defense.</span></h1>
+        <p className="hero-summary">A builder&apos;s curiosity. An analyst&apos;s mindset.</p>
+        <p className="hero-intro">I&apos;m a third-year Computer Science student exploring how systems work, where they fail, and how to defend them.</p>
+        <dl className="hero-facts">
+          <div><Icon name="graduation" /><div><dt>Rangsit University</dt><dd>Computer Science</dd></div></div>
+          <div><Icon name="target" /><div><dt>Career goal</dt><dd>Blue Team / SOC roles</dd></div></div>
+          <div><Icon name="calendar" /><div><dt>Availability</dt><dd>Summer 2027 internships</dd></div></div>
+        </dl>
+        <div className="hero-actions"><a className="button button-primary" href="#projects">Explore my work <Icon name="arrow" /></a><a className="button button-secondary" href="#contact"><Icon name="mail" /> Get in touch</a></div>
+      </div>
     </section>
   );
 }

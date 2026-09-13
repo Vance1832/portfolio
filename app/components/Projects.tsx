@@ -1,124 +1,47 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import styles from "./Projects.module.css";
 
-type Category = "Security" | "Software" | "Game Dev";
-
-const projects: Array<{
-  title: string;
-  category: Category;
-  summary: string;
-  detail: string;
-  tags: string[];
-  href: string;
-}> = [
-  {
-    title: "Enterprise Network Design",
-    category: "Security",
-    summary: "A segmented enterprise topology designed around secure access and resilient connectivity.",
-    detail: "Network architecture work exploring segmentation, routing, service availability, and the controls needed to reduce unnecessary trust between systems.",
-    tags: ["Networking", "Segmentation", "Security"],
-    href: "https://github.com/Vance1832/enterprise-network-design",
-  },
-  {
-    title: "Flowbit",
-    category: "Software",
-    summary: "A productivity system for turning plans into focused, trackable work.",
-    detail: "A full-stack application shaped around clear task flows, approachable interaction design, and maintainable product architecture.",
-    tags: ["Full Stack", "Productivity", "Web"],
-    href: "https://github.com/Vance1832/flowbit",
-  },
-  {
-    title: "Rangsit Social",
-    category: "Software",
-    summary: "A social platform created for connection across the university community.",
-    detail: "A community-oriented web application covering user interaction, content flows, and the practical engineering of a social product.",
-    tags: ["Social Platform", "Full Stack", "Community"],
-    href: "https://github.com/Vance1832/rangsit-social",
-  },
-  {
-    title: "TechMobile",
-    category: "Software",
-    summary: "An e-commerce experience for discovering and purchasing mobile technology.",
-    detail: "An end-to-end storefront project focused on catalog navigation, product presentation, and dependable commerce workflows.",
-    tags: ["E-commerce", "Web", "Database"],
-    href: "https://github.com/Vance1832/techmobile-ecommerce",
-  },
-  {
-    title: "Solar System Simulation",
-    category: "Software",
-    summary: "An interactive visual study of orbital movement and planetary scale.",
-    detail: "A graphics-driven simulation translating astronomical relationships into an explorable visual system using Processing.",
-    tags: ["Processing", "Simulation", "Creative Code"],
-    href: "https://github.com/Vance1832/solar-system-processing",
-  },
-  {
-    title: "Virtual Mouse",
-    category: "Software",
-    summary: "A computer-vision experiment that turns hand movement into pointer control.",
-    detail: "A gesture interface exploring real-time vision, landmark tracking, and the usability challenges of touch-free interaction.",
-    tags: ["Python", "Computer Vision", "Interaction"],
-    href: "https://github.com/Vance1832/virtual-mouse-computer-vision",
-  },
-  {
-    title: "Whisper of Ascension",
-    category: "Game Dev",
-    summary: "A game-development project exploring progression, atmosphere, and player experience.",
-    detail: "A supporting creative project used to practice game systems, iterative design, and the collaboration between technical and narrative decisions.",
-    tags: ["Game Development", "Systems", "Design"],
-    href: "https://github.com/Vance1832/Whisper-Of-Ascension",
-  },
+const otherProjects = [
+  { title: "Rangsit Social", summary: "A social platform for the university community.", category: "Software engineering", href: "https://github.com/Vance1832/rangsit-social" },
+  { title: "TechMobile", summary: "A mobile technology e-commerce application.", category: "Software engineering", href: "https://github.com/Vance1832/techmobile-ecommerce" },
+  { title: "Solar System Simulation", summary: "An interactive planetary simulation built with Processing.", category: "Creative coding", href: "https://github.com/Vance1832/solar-system-processing" },
+  { title: "Virtual Mouse", summary: "A computer vision experiment in touch-free pointer control.", category: "Computer vision", href: "https://github.com/Vance1832/virtual-mouse-computer-vision" },
 ];
 
-const filters = ["All", "Security", "Software", "Game Dev"] as const;
+function FlowbitArchitecture() {
+  return (
+    <div className={styles.flowbitVisual} aria-label="Flowbit application architecture: Next.js web client, Django API, and PostgreSQL database">
+      <div className={styles.flowbitBrand}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 0v10m-9-5 9 5 9-5m-9 5v10" /></svg>Flowbit</div>
+      <div className={styles.architectureStack}><span><b>Next.js</b><small>Web client</small></span><i aria-hidden="true">↓</i><span><b>Django</b><small>REST API</small></span><i aria-hidden="true">↓</i><span><b>PostgreSQL</b><small>Data layer</small></span></div>
+      <small className={styles.visualCaption}>Application architecture</small>
+    </div>
+  );
+}
 
 export default function Projects() {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
-  const [openProject, setOpenProject] = useState<string | null>(null);
-  const visible = filter === "All" ? projects : projects.filter((project) => project.category === filter);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="section projects" id="projects" aria-labelledby="projects-title">
-      <div className="section-heading">
-        <span>03</span>
-        <p>Case files</p>
+    <section className={`panel ${styles.beyond}`} id="more-projects" aria-labelledby="beyond-title">
+      <div className="panel-heading">
+        <h2 className="panel-title" id="beyond-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5v9l-9 5-9-5V8Zm0 0v19M3 8l9 5 9-5" /></svg>Beyond security</h2>
+        <span className="panel-meta">Other projects that fuel my curiosity</span>
       </div>
-
-      <div className="projects-top">
-        <div>
-          <p className="eyebrow">Selected investigations</p>
-          <h2 id="projects-title">Projects, documented<br />as evidence.</h2>
-        </div>
-        <div className="project-filters" aria-label="Filter projects">
-          {filters.map((item) => (
-            <button key={item} className={filter === item ? "active" : ""} onClick={() => { setFilter(item); setOpenProject(null); }} type="button">
-              {item}
-            </button>
-          ))}
-        </div>
+      <div className={styles.projectCards}>
+        <article className={styles.projectCard}>
+          <FlowbitArchitecture />
+          <div className={styles.cardCopy}><h3>Flowbit</h3><span className={styles.softwareBadge}>Software engineering</span><p>A wallet and settlement platform with role-based workflows, transaction approvals, and an audit trail.</p><a href="https://github.com/Vance1832/flowbit" target="_blank" rel="noreferrer">View project <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article className={styles.projectCard}>
+          <figure className={styles.gameVisual}><Image src="/projects/whisper-of-ascension.png" alt="Whisper of Ascension project artwork: a ghost in a haunted cemetery" width={836} height={651} sizes="(max-width: 560px) 100vw, (max-width: 1000px) 40vw, 260px" /><figcaption>Original project artwork</figcaption></figure>
+          <div className={styles.cardCopy}><h3>Whisper of Ascension</h3><span className={styles.gameBadge}>Game development</span><p>A Unity mystery game where a lost ghost collects memory shards and solves a case to ascend.</p><a href="https://github.com/Vance1832/Whisper-Of-Ascension" target="_blank" rel="noreferrer">View project <span aria-hidden="true">↗</span></a></div>
+        </article>
       </div>
-
-      <div className="project-list">
-        {visible.map((project, index) => {
-          const expanded = openProject === project.title;
-          return (
-            <article className={expanded ? "project-row expanded" : "project-row"} key={project.title}>
-              <button className="project-summary" type="button" onClick={() => setOpenProject(expanded ? null : project.title)} aria-expanded={expanded}>
-                <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
-                <span className="project-main"><small>{project.category}</small><strong>{project.title}</strong><span>{project.summary}</span></span>
-                <span className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</span>
-                <span className="open-case">{expanded ? "Close" : "View case"} <b aria-hidden="true">{expanded ? "−" : "+"}</b></span>
-              </button>
-              {expanded && (
-                <div className="project-detail">
-                  <p>{project.detail}</p>
-                  <a href={project.href} target="_blank" rel="noreferrer">View repository ↗</a>
-                </div>
-              )}
-            </article>
-          );
-        })}
-      </div>
+      <div className={styles.moreBar}><span>More experiments in software and interaction.</span><button type="button" aria-expanded={expanded} aria-controls="additional-projects" onClick={() => setExpanded(!expanded)}>{expanded ? "Show less" : "View all projects"}<span aria-hidden="true">{expanded ? "−" : "+"}</span></button></div>
+      {expanded && <div className={styles.additionalProjects} id="additional-projects">{otherProjects.map((project) => <a key={project.title} href={project.href} target="_blank" rel="noreferrer"><span className={styles.additionalCategory}>{project.category}</span><h3>{project.title}<span aria-hidden="true">↗</span></h3><p>{project.summary}</p></a>)}</div>}
     </section>
   );
 }

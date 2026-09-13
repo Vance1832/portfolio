@@ -1,0 +1,5 @@
+# Project visual sources
+
+- `whisper-of-ascension.png`: the owner's original project artwork, copied from [Whisper-Of-Ascension/screenshots/demoappicon.png](https://github.com/Vance1832/Whisper-Of-Ascension/blob/main/screenshots/demoappicon.png). The original repository documents its use of third-party Unity assets; this portfolio reuses its published project artwork and does not redistribute those asset packages. No separate artwork license was present in the screenshot directory.
+- The network diagram in `FeaturedProject.tsx` is an original, simplified code-native illustration of the features listed in [enterprise-network-design](https://github.com/Vance1832/enterprise-network-design): VLAN segmentation, inter-VLAN routing, DHCP, DNS, trunking, and port security. It does not claim to reproduce the original Packet Tracer file.
+- The Flowbit visual in `Projects.tsx` illustrates the Next.js → Django REST API → PostgreSQL architecture documented in [flowbit](https://github.com/Vance1832/flowbit). It is not an application screenshot.
